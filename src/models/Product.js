@@ -13,7 +13,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  type: { type: mongoose.Schema.Types.ObjectId, ref: 'Type' }
+  type: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Type'
+  }
 });
 
 ProductSchema.method({});
