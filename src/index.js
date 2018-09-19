@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const api = require('./api');
 
-mongoose.connect('mongodb://stock-db/stock');
+mongoose.connect(process.env.DB_URL);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
