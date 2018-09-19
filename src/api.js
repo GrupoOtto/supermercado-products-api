@@ -2,7 +2,7 @@ const status = require('http-status');
 const products = require('./controllers/preducts');
 const types = require('./controllers/types');
 
-const handle = fn => (req, res, next) => fn(req, res, next).catch(error => next(error));
+const handle = fn => (req, res, next) => fn(req, res, next).catch(next);
 
 module.exports = app => {
 
