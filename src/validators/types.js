@@ -1,10 +1,21 @@
 const Joi = require('joi');
 
-const schema = {
-  initials: Joi.string().required(),
-  description: Joi.string().required(),
+exports.all = {};
+
+exports.create = {
+  body: {
+    initials: Joi.string().required(),
+    description: Joi.string().required()
+  }
 };
 
-module.exports = {
-  body: schema
-}
+exports.get = {};
+
+exports.update = {
+  body: {
+    initials: Joi.string().required(),
+    description: Joi.string().required()
+  }
+};
+
+exports.delete = {};
