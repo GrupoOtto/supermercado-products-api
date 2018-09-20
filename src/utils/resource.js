@@ -6,7 +6,7 @@ const handle = fn => (req, res, next) => fn(req, res, next).catch(next);
 
 module.exports = (app) => (base, controller, validator) => {
   app.get(base, validate(validator.all), handle(async (req, res) => {
-    res.status(status.OK).json(await controller.all())
+    res.status(status.OK).json(await controller.all(req.query))
   }));
 
   app.post(base, validate(validator.create), handle(async (req, res) => {
