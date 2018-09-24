@@ -18,4 +18,11 @@ exports.update = {
   }
 };
 
+exports.patch = {
+  body: {
+    initials: Joi.string(),
+    description: Joi.string()
+  }
+};
+
 exports.delete = {};
