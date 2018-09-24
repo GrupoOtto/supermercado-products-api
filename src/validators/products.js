@@ -1,19 +1,29 @@
 const Joi = require('joi');
 
+const numberSchema = [
+  Joi.number(),
+  Joi.object()
+    .keys({
+      $gt: Joi.number(),
+      $gte: Joi.number(),
+      $lt: Joi.number(),
+      $lte: Joi.number()
+    })
+    .or('$gt', '$gte', '$lt', '$lte')
+];
+
+const stringSchema = [
+  Joi.string(),
+  Joi.object().keys({
+    $regex: Joi.string()
+  })
+];
+
 exports.all = {
   query: {
-    name: Joi.string(),
-    costPrice: [
-      Joi.number(),
-      Joi.object()
-        .keys({
-          $gt: Joi.number(),
-          $gte: Joi.number(),
-          $lt: Joi.number(),
-          $lte: Joi.number()
-        })
-        .or('$gt', '$gte', '$lt', '$lte')
-    ]
+    name: stringSchema,
+    costPrice: numberSchema,
+    salePrice: numberSchema
   }
 };
 
@@ -38,6 +48,15 @@ exports.update = {
     type: Joi.string()
       .hex()
       .required()
+  }
+};
+
+exports.patch = {
+  body: {
+    name: Joi.string(),
+    costPrice: Joi.number(),
+    salePrice: Joi.number(),
+    type: Joi.string().hex()
   }
 };
 
