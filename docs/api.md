@@ -69,7 +69,7 @@ PATCH   | Apply a partial update to an object                                   
 
 - `/`
 
-  - `GET : Empoyee[]`
+  - `GET : Product[]`
 
     Returns all products that satisfy the query filter
 
