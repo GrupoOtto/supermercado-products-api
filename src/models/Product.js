@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
+  images: [String],
   costPrice: {
     type: Number,
     required: true
@@ -13,13 +15,25 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  stock: {
+    type: Number,
+    required: false,
+    default: null
+  },
   type: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Type'
   }
 });
 
-ProductSchema.method({});
+ProductSchema.method({
+  isValid: function () {
+    if (this.stock !== null && this.stock < 1) {
+      return false;
+    }
+    return true;
+  }
+});
 
 ProductSchema.statics = {};
 

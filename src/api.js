@@ -9,15 +9,16 @@ const handle = fn => (req, res, next) => fn(req, res, next).catch(next);
 module.exports = app => {
   const resource = require('./utils/resource')(app);
 
+  app.get('/:id/valid', handle(async (req, res) => {
+    const { id } = req.params;
+    res.status(status.OK).json(await products.valid(id));
+  }));
+
+  app.post('/:id/buy', handle(async (req, res) => {
+      const { id } = req.params;
+      res.status(status.OK).json(await products.buy(id));
+  }));
+
   resource('/types', types, typeValidator);
   resource('/', products, productValidator);
-
-  app.get(
-    '/types/:id/products',
-    handle(async (req, res) => {
-      const { id } = req.params;
-      res.status(status.OK).json(await products.findByType(id));
-    })
-  );
-
 };

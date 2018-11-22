@@ -3,13 +3,13 @@ const Joi = require('joi');
 const numberSchema = [
   Joi.number(),
   Joi.object()
-    .keys({
-      $gt: Joi.number(),
-      $gte: Joi.number(),
-      $lt: Joi.number(),
-      $lte: Joi.number()
-    })
-    .or('$gt', '$gte', '$lt', '$lte')
+  .keys({
+    $gt: Joi.number(),
+    $gte: Joi.number(),
+    $lt: Joi.number(),
+    $lte: Joi.number()
+  })
+  .or('$gt', '$gte', '$lt', '$lte')
 ];
 
 const stringSchema = [
@@ -23,7 +23,8 @@ exports.all = {
   query: {
     name: stringSchema,
     costPrice: numberSchema,
-    salePrice: numberSchema
+    salePrice: numberSchema,
+    stock: numberSchema
   }
 };
 
@@ -32,6 +33,8 @@ exports.create = {
     name: Joi.string().required(),
     costPrice: Joi.number().required(),
     salePrice: Joi.number().required(),
+    stock: Joi.number(),
+    images: Joi.array().items(Joi.string().uri()),
     type: Joi.string()
       .hex()
       .required()
@@ -45,6 +48,8 @@ exports.update = {
     name: Joi.string().required(),
     costPrice: Joi.number().required(),
     salePrice: Joi.number().required(),
+    stock: Joi.number(),
+    images: Joi.array().items(Joi.string().uri()),
     type: Joi.string()
       .hex()
       .required()
@@ -56,6 +61,8 @@ exports.patch = {
     name: Joi.string(),
     costPrice: Joi.number(),
     salePrice: Joi.number(),
+    stock: Joi.number(),
+    images: Joi.array().items(Joi.string().uri()),
     type: Joi.string().hex()
   }
 };
