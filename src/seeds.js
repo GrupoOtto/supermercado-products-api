@@ -21,7 +21,7 @@ mongoose.connect(process.env.DB_URL).then(async () => {
       const name = faker.commerce.productName();
       const costPrice = faker.commerce.price();
       const salePrice = costPrice * (index / 20 + 1);
-      const product = await Product(name, costPrice, salePrice, type._id);
+      const product = await Product(name, salePrice, costPrice, type._id);
       console.log(product);
     }
   }
