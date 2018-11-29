@@ -12,7 +12,7 @@ const Product = (name, salePrice, costPrice, type, images) =>
     type,
     images
   });
-const Type = (initials, description, icon) => types.create({
+const Type = (description, initials, icon) => types.create({
   initials,
   description,
   icon
